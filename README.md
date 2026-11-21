@@ -9,7 +9,7 @@ Reproduction artifacts for Levent Alpöge's November 2026 formalization. The pro
 - The five headline theorems each listed exactly `propext`, `Classical.choice`, and `Quot.sound` in the local axiom audit.
 - A declaration-level replay of the ordinary RH theorem is in progress. This repository records the local run. See [MIT's verification report](https://math.mit.edu/~drew/grh/) for separate kernel and Comparator results.
 
-[Local audit excerpt](results/audit.txt)
+[Local audit excerpt](results/audit.txt) · [Reproduction and resource observations](results/reproduction.md)
 
 ## Reproduce
 
