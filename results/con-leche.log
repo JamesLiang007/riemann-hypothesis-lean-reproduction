@@ -1,0 +1,40 @@
+START at Sun Nov 22 19:16:26 CST 2026
+9146dfb4148e24d2252e04c50742f3e49dd126dfcc5006d10bf5f873ddf796ad  Main.olean
+Exporting riemannHypothesis and its dependencies from local Main.olean
+challenge.ndjson size: 332M
+solution.ndjson size: 58G
+Starting con-leche in verified compare mode with 32 workers
+con-leche: reading challenge.ndjson
+con-leche: reading solution.ndjson
+con-leche: checking: 1468390 declarations on 32 workers t=83.0s
+con-leche: check 265798 (18%) t=113.0s busy=31/32
+con-leche: check 366926 (24%) t=143.0s busy=30/32
+con-leche: check 474915 (32%) t=173.0s busy=31/32
+con-leche: check 540319 (36%) t=203.0s busy=31/32
+con-leche: check 623845 (42%) t=233.0s busy=31/32, oldest theorem PI.PC.loop_run._proof_1_1 (#571290) 20.586s
+con-leche: check 746146 (50%) t=263.0s busy=31/32
+con-leche: check 831446 (56%) t=293.0s busy=31/32
+con-leche: check 891903 (60%) t=323.0s busy=31/32, oldest theorem GlobalTheory.HeightCounting.SideCopy.LamCopy.lam_copy (#829554) 30.753s
+con-leche: check 1012045 (68%) t=353.0s busy=31/32
+con-leche: check 1119463 (76%) t=383.0s busy=31/32
+con-leche: check 1215727 (82%) t=413.0s busy=31/32
+con-leche: check 1294753 (88%) t=443.0s busy=31/32
+con-leche: check 1413726 (96%) t=473.0s busy=31/32
+con-leche: check done: 1468390 declarations t=493.5s (check 410.4s)
+con-leche: done: parse 83.0s, check 410.4s, 32 workers t=493.5s
+con-leche: stats: phases: parse 83.0s (index 3.5s), check 410.4s
+con-leche: stats: check pool: 410.427s wall, 32 workers, 1468390 records, busy 13112.294s (99.8%); tail 0.464s after the last start, 32 busy then, 1.843s worker-time in it (12.4%)
+con-leche: stats: slowest checks: 52.967s theorem GlobalTheory.HeightCounting.SideCopy.LamCopy.lam_copy (#829554); 44.197s theorem GlobalTheory.HeightCounting.SideCopy.sigSpan_copy (#829660); 37.502s theorem PI.PC.loop_run._proof_1_1 (#571290); 21.696s theorem Formalism.IrreducibleCountingLemmas.GaloisIrreducibility.PrimeCountingLemmas.factorial_ladder_one_forty_one._proof_1_1 (#226690); 19.182s theorem GlobalTheory.Poinc.TestAtPt.exists_uTest_isBC (#1209894)
+con-leche: stats: peak RSS 44.08 GiB
+con-leche: checking: 51215 declarations on 32 workers t=498.8s
+con-leche: check done: 51215 declarations t=500.1s (check 1.2s)
+con-leche: done: parse 498.8s, check 1.2s, 32 workers t=500.1s
+con-leche: stats: phases: parse 498.8s (index 1.2s), check 1.2s
+con-leche: stats: check pool: 1.292s wall, 32 workers, 51215 records, busy 37.922s (91.6%); tail 0.108s after the last start, 32 busy then, 0.251s worker-time in it (7.2%)
+con-leche: stats: slowest checks: 0.103s axiom riemannHypothesis (#51214); 0.053s theorem Lean.Grind.Ring.OfSemiring.mul_helper (#22850); 0.047s theorem FormalMultilinearSeries.changeOrigin_eval (#40416); 0.046s theorem hasFDerivAt_of_tendstoUniformlyOnFilter (#35284); 0.044s theorem HasFPowerSeriesWithinOnBall.hasSum_derivSeries_of_hasFDerivWithinAt (#40423)
+con-leche: stats: peak RSS 44.08 GiB
+con-leche: accepted 51215 declarations, 1 axioms justified by the solution solution.ndjson (1468390 declarations accepted) (--verified)
+con-leche: axiom riemannHypothesis justified by the solution
+PASS con-leche compare at Sun Nov 22 21:08:34 CST 2026
+9c3976a540a9b9964168ebca513ecebb5d866241d1847e3c65b42b1e47492eba  challenge.ndjson
+64f6c9d5e217834e0d06cc6fbb5d4a2591fd25793b9b5089ba2aceb4ec4b77eb  solution.ndjson

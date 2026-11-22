@@ -7,11 +7,13 @@ Reproduction artifacts for Levent Alpöge's November 2026 formalization. The pro
 - Lake completed the local build with 183,892 jobs. The project has 175,187 Lean source modules.
 - The statement of `riemannHypothesis` matched the reference statement by definitional equality.
 - The five headline theorems each listed exactly `propext`, `Classical.choice`, and `Quot.sound` in the local axiom audit.
-- A declaration-level replay of the ordinary RH theorem is in progress. This repository records the local run. See [MIT's verification report](https://math.mit.edu/~drew/grh/) for separate kernel and Comparator results.
+- **Independent `con-leche` verification passed** for ordinary RH. In `--verified --compare` mode, it accepted 1,468,390 declarations from the local export and justified `riemannHypothesis` against a challenge importing only Mathlib. The run used 32 workers and took about 8 minutes 20 seconds after export.
 
-[Local audit excerpt](results/audit.txt) · [Reproduction and resource observations](results/reproduction.md)
+[Parallel verification result and commands](results/con-leche.md) · [Local audit excerpt](results/audit.txt) · [Reproduction and resource observations](results/reproduction.md)
 
 ## Reproduce
+
+The [parallel verification instructions](results/con-leche.md#reproduce-the-parallel-check) cover the independent check. The commands below cover the original statement audit and Lean-kernel replay experiment.
 
 The run used Lean `v4.33.1` and Mathlib commit `0df444a360eaa60ab8c11dca51a86af692955474`. Verify the author archive using [SHA256SUMS](SHA256SUMS) before extracting it. In the extracted Lean project, install the pinned toolchain and fetch the Mathlib dependencies before going offline. Build with `lake build Main`. For a clean build and an independent verifier, see the community repository's checking instructions linked above.
 
