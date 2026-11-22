@@ -9,7 +9,7 @@ Reproduction artifacts for Levent Alpöge's November 2026 formalization. The pro
 - The five headline theorems each listed exactly `propext`, `Classical.choice`, and `Quot.sound` in the local axiom audit.
 - **Independent `con-leche` verification passed** for ordinary RH. In `--verified --compare` mode, it accepted 1,468,390 declarations from the local export and justified `riemannHypothesis` against a challenge importing only Mathlib. The run used 32 workers and took about 8 minutes 20 seconds after export.
 
-[Parallel verification result and commands](results/con-leche.md) · [Local audit excerpt](results/audit.txt) · [Reproduction and resource observations](results/reproduction.md)
+[Independent reproduction record and cross-checks](results/independent-verification.md) · [Parallel verification result and commands](results/con-leche.md) · [Local audit excerpt](results/audit.txt) · [Reproduction and resource observations](results/reproduction.md)
 
 ## Reproduce
 
