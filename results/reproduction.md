@@ -1,18 +1,18 @@
-# Local reproduction and resource observations
+# Local reproduction and resource notes
 
-The local run rebuilt the published submission with Lean 4.33.1 and pinned Mathlib artifacts. The SHA-256 digests of both the source archive and the locally built `Main.olean` match the digests in [MIT's verification report](https://math.mit.edu/~drew/grh/). The statement and axiom checks are recorded in [the audit excerpt](audit.txt).
+I rebuilt the published submission with Lean 4.33.1 and pinned Mathlib artifacts. The SHA-256 digests of the source archive and of my `Main.olean` both match [MIT's verification report](https://math.mit.edu/~drew/grh/). The statement and axiom checks are in the [audit excerpt](audit.txt).
 
 ## Replay experiments
 
-The later [independent `con-leche` run](con-leche.md) passed for `riemannHypothesis`. The table also records earlier experiments with Lean's own replay API.
+The [`con-leche` run](con-leche.md) later passed for `riemannHypothesis`. The table also lists my earlier attempts with Lean's own replay API.
 
 | Run | Outcome | Checker memory |
 | --- | --- | --- |
-| 192 project modules, 16 modules per process | All passed. The sum of the 12 check durations was 669.52 seconds, about 17 modules/minute in this sample. | Highest recorded physical RSS 121 GiB. Highest recorded virtual address space 145 GiB. |
-| 16 heavier modules in one process, including `Main` | The checker reported an artifact read failure as it reached its address-space limit. | Virtual address space reached 300 GiB. Physical RSS peaked at about 248 GiB in the sampled process data. |
-| Earlier targeted Lean declaration replay for `riemannHypothesis` | Statement and stored axiom audit passed. At 03:34 UTC+08:00 on 2026-11-22, the dependency walk had logged 1,470,000 declarations. A later post-replay check found a declaration absent from the resulting environment, so this run did not report a pass. | The dependency-collection process had about 89 GiB resident memory at that snapshot. |
-| `con-leche --verified --compare`, 32 workers | Passed. Accepted 1,468,390 solution declarations and justified `riemannHypothesis` against a Mathlib-only challenge. The full check took 500.1 seconds after export. | Peak RSS 44.08 GiB. |
+| 192 project modules, 16 modules per process | All passed. The 12 checks took 669.52 seconds in total, about 17 modules per minute. | Peak physical RSS 121 GiB, peak virtual address space 145 GiB. |
+| 16 heavier modules in one process, including `Main` | Failed with an artifact read error at the address-space limit. | Virtual address space hit 300 GiB. Physical RSS peaked at about 248 GiB in the sampled data. |
+| Targeted Lean replay for `riemannHypothesis` | The statement and stored axiom audit passed. At 03:34 UTC+08:00 on 2026-11-22 the dependency walk had logged 1,470,000 declarations. A later check found a declaration missing from the resulting environment, so this run did not count as a pass. | The dependency walk held about 89 GiB resident at that point. |
+| `con-leche --verified --compare`, 32 workers | Passed. Accepted 1,468,390 solution declarations and justified `riemannHypothesis` against a Mathlib-only challenge. 500.1 seconds after export. | Peak RSS 44.08 GiB. |
 
-The 300 GiB limit applied to virtual address space via Linux `RLIMIT_AS`. The heavy-run failure was a file-read error at that limit. The run did not report a kernel rejection. Resource numbers are rounded and come from the checker's own Linux process status. A few early groups lacked end-of-group memory statistics. The initial pilot samples are unsuitable for projecting total replay time because import closures vary between modules.
+The 300 GiB limit is a virtual address space limit set with Linux `RLIMIT_AS`. The heavy run failed with a file-read error at that limit, not a kernel rejection. Memory numbers are rounded and come from the checker's own Linux process status; a few early groups have no end-of-group figures. Don't extrapolate total replay time from the pilot runs, since import closures differ a lot between modules.
 
-The local run complements public checks by documenting a separate build and its matching artifact. For checks using other kernels and an independently constructed challenge, see the [Lean and Mathlib joint statement](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/) and MIT's report.
+This is one more independent build with matching artifacts. For checks with other kernels and an independently written challenge, see the [Lean and Mathlib joint statement](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/) and MIT's report.
