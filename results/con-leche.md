@@ -1,8 +1,8 @@
-# Independent verification of `riemannHypothesis`
+# `con-leche` check of `riemannHypothesis`
 
-**Passed on 2026-11-22 at 21:08:34 (UTC+08:00).** The run exported `riemannHypothesis` and its dependencies from the locally built `Main.olean`. The independent `con-leche` checker accepted 1,468,390 declarations from that export. It also checked 51,215 challenge declarations and reported that the solution justified `riemannHypothesis`. The [challenge source](../RHParallelChallenge.lean) imports Mathlib's Riemann zeta module and declares the target statement as the axiom to be justified by the checker.
+**Passed on 2026-11-22 at 21:08:34 (UTC+08:00).** I exported `riemannHypothesis` and its dependencies from the locally built `Main.olean`. `con-leche` accepted 1,468,390 declarations from that export, checked 51,215 challenge declarations, and reported that the solution justified `riemannHypothesis`. The [challenge source](../RHParallelChallenge.lean) imports Mathlib's Riemann zeta module and states the target as an axiom for the checker to justify.
 
-The comparison targets ordinary RH. The [earlier axiom audit](audit.txt) covers the five headline statements, including the statements about Dirichlet L-functions.
+This comparison covers ordinary RH only. The [axiom audit](audit.txt) covers all five headline statements, including the Dirichlet L-function ones.
 
 ## Run measurements
 
@@ -20,7 +20,7 @@ The comparison targets ordinary RH. The [earlier axiom audit](audit.txt) covers 
 
 ## Artifact checksums
 
-The local `Main.olean` digest is recorded in [SHA256SUMS](../SHA256SUMS) and matches the value reported by [MIT](https://math.mit.edu/~drew/grh/). The following exports were produced locally for the single-target comparison.
+The `Main.olean` digest is in [SHA256SUMS](../SHA256SUMS) and matches the one [MIT](https://math.mit.edu/~drew/grh/) reports. I produced these two exports locally for the single-target comparison.
 
 | Export | Bytes | SHA-256 |
 | --- | ---: | --- |
@@ -29,9 +29,9 @@ The local `Main.olean` digest is recorded in [SHA256SUMS](../SHA256SUMS) and mat
 
 ## Reproduce the parallel check
 
-Use the local project build with Lean 4.33.1 and the pinned Mathlib revision listed in the [README](../README.md). Build [lean4export v4.33.0](https://github.com/leanprover/lean4export/tree/v4.33.0) against Lean 4.33.1. The checker used the [con-leche compare revision](https://github.com/leanprover/con-leche/tree/5dc36dc15b7bee891a02406b78a8ac816a47baad) built with Lean 4.36.0. The original run executed the export and check with networking disabled.
+Start from the project build with Lean 4.33.1 and the Mathlib revision in the [README](../README.md). Build [lean4export v4.33.0](https://github.com/leanprover/lean4export/tree/v4.33.0) against Lean 4.33.1. I used the [con-leche compare revision](https://github.com/leanprover/con-leche/tree/5dc36dc15b7bee891a02406b78a8ac816a47baad), built with Lean 4.36.0. Both the export and the check ran with networking disabled.
 
-From the proof project's root, set `AUDIT_DIR` to the absolute path of this repository and `EXPORTER` and `CON_LECHE` to the absolute paths of their executables. Run the commands in a directory with room for the exports.
+From the proof project's root, set `AUDIT_DIR` to the absolute path of this repository, and `EXPORTER` and `CON_LECHE` to the absolute paths of the two executables. Run the commands in a directory with enough space for the exports (the solution export is about 62 GB).
 
 ```bash
 export LEAN_ABORT_ON_PANIC=1
@@ -49,4 +49,4 @@ lake --no-cache env "$EXPORTER" Main -- riemannHypothesis > solution.ndjson
   challenge.ndjson solution.ndjson
 ```
 
-The expected result includes `axiom riemannHypothesis justified by the solution`. The repository contains the log and checksums. The large NDJSON exports were kept on the compute node.
+A passing run prints `axiom riemannHypothesis justified by the solution`. The log and checksums are in this repository. The NDJSON exports are too large to include and stayed on the compute node.
